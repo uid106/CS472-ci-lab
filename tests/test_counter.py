@@ -59,9 +59,14 @@ class TestCounterEndPoints:
         assert result.status_code == status.HTTP_200_OK
         assert result.json == {'test2':0}
 
-        result = client.get('counters/fake')
+        result = client.get('/counters/fake')
         assert result.status_code == status.HTTP_404_NOT_FOUND
 
+    def test_delete_counter(self,client):
+        """Testing Deleting Counter"""
+        client.post('/counters/test3')
+        result = client.delete('/counters/test3')
+        assert result.status_code == status.HTTP_204_NO_CONTENT
 
-
-
+        result = client.delete('/counters/fake')
+        assert result.status_code == status.HTTP_404_NOT_FOUND
