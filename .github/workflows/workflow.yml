@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install system dependencies (curl)
+        run: apt-get update && apt-get install -y curl
+
       - name: Cache pip
         uses: actions/cache@v3
         with:
